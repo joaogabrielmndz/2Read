@@ -37,6 +37,9 @@ ls:
 # Acessa o terminal do container do app
 sh:
     {{sail}} shell
+# Exibe os logs do Sail
+sail-logs:
+    {{sail}} logs
 
 # ------------------------------------------------------------------------------
 # BANCO DE DADOS
@@ -70,7 +73,9 @@ clear:
 # Executa a suíte de testes
 test:
     {{sail}} artisan test
-
-# Exibe os logs da aplicação em tempo real
-logs:
-    {{sail}} tail -f storage/logs/laravel.log
+# Exibe todas as Rotas da aplicação
+routes:
+    {{sail}} artisan route:list
+# Exibe os logs os ultimos logs registrados da aplicação
+get-logs:
+    tail -f storage/logs/laravel.log
