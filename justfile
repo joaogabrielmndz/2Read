@@ -79,3 +79,13 @@ routes:
 # Exibe os logs os ultimos logs registrados da aplicação
 get-logs:
     tail -f storage/logs/laravel.log
+
+# ------------------------------------------------------------------------------
+# COMPOSER
+# ------------------------------------------------------------------------------
+# Atalho universal para comandos com composer (Ex: just composer require laravel/laravel)
+composer *ARGS:
+    {{sail}} composer {{ARGS}}
+# Executa o comando composer dump-autoload
+dump:
+    {{sail}} composer dump-autoload
