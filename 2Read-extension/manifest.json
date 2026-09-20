@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "2Read - Salvar Página",
+  "version": "1.0",
+  "description": "Salva o conteúdo da página ativa no seu app Laravel.",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
