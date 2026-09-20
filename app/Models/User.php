@@ -34,7 +34,7 @@ class User extends Authenticatable
     /** Make a M:M relationship with Pages */
     public function pages(): BelongsToMany
     {
-        return $this->belongsToMany(Page::class)
+        return $this->belongsToMany(Page::class, 'user_page')
             ->withPivot(['custom_title', 'is_read', 'is_archived'])
             ->withTimestamps();
     }
