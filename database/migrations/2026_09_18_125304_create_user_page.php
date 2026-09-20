@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('user_page', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users', 'id', 'user_id')->cascadeOnDelete();
-            $table->foreignId('page_id')->constrained('pages', 'id', 'page_id')->cascadeOnDelete();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('page_id')->constrained()->cascadeOnDelete();
 
             $table->string('custom_title');
             $table->boolean('is_read')->default(false);
