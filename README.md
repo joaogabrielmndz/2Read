@@ -28,7 +28,7 @@ Certifique-se de ter o **Docker** e o **Just** instalados na sua máquina.
 1. Clone o repositório:
    ```bash
    git clone [https://github.com/joaogabrielmndz/2Read.git](https://github.com/joaogabrielmndz/2Read.git)
-   cd seu-projeto
+   cd 2Read
 2. Inicie o setup do projeto com o comando:
    ```bash
    just setup
