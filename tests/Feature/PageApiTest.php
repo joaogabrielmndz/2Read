@@ -22,7 +22,7 @@ class PageApiTest extends TestCase
         $payload = [
             'url'   => 'https://exemplo.com/artigo-teste',
             'title' => 'Artigo de Teste',
-            'html'  => '<h1>Título</h1><p>Conteúdo de teste com script <script>alert("xss")</script></p>'
+            'content'  => '<h1>Título</h1><p>Conteúdo de teste com script <script>alert("xss")</script></p>'
         ];
 
         $response = $this->actingAs($user)

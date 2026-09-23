@@ -2,19 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PageStoreRequest;
 use App\Jobs\ProcessWebPageJob;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class PageController extends Controller
 {
-    public function store(Request $request)
+    public function store(PageStoreRequest $request)
     {
-        $data = $request->validate([
-            'url' => ['required', 'url'],
-            'title' => ['required', 'string', 'max:255'],
-            'content' => ['required', 'string']
-        ]);
+        $data = $request->validated();
 
         $hash_url = hash(algo: 'sha256', data: $data['url']);
 
