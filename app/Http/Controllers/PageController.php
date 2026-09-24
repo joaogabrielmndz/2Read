@@ -3,28 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PageStoreRequest;
-use App\Jobs\ProcessWebPageJob;
+use App\Services\PageServices;
 use Illuminate\Http\Response;
 
 class PageController extends Controller
 {
+    public function __construct(
+        private PageServices $processService
+    ){}
+
     public function store(PageStoreRequest $request)
     {
         $data = $request->validated();
 
-        $hash_url = hash(algo: 'sha256', data: $data['url']);
-
-        ProcessWebPageJob::dispatch(
-            $hash_url,
-            $data['url'],
-            $data['title'],
-            $data['content'],
-            $request->user()
-        );
+        $this->processService->dispatchProcessing(data: $data, user: $request->user());
 
         return response()->json([
             'msg' => 'Pagina enviada para processamento',
-            'hash_url' => $hash_url
+            'status' => 'processing'
         ], Response::HTTP_ACCEPTED);
     }
 }

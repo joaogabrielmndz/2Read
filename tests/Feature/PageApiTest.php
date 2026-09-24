@@ -29,7 +29,7 @@ class PageApiTest extends TestCase
             ->postJson('/api/v1/pages', $payload);
 
         $response->assertStatus(202)
-                 ->assertJsonStructure(['msg', 'hash_url']);
+                 ->assertJsonStructure(['msg', 'status']);
 
         Queue::assertPushed(ProcessWebPageJob::class);
     }
