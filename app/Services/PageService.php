@@ -10,9 +10,7 @@ class PageService
     /**
      * Create a new class instance.
      */
-    public function __construct(
-
-    ){}
+    public function __construct() {}
 
     /**
      * Makes Validation and Dispatch on queue
@@ -36,14 +34,15 @@ class PageService
 
     public function updatePage(User $user, int $id, array $data)
     {
-        $page = $user->pages()->find($id);
-
-        $user->pages()->updateExistingPivot($page, array_filter([
+        $pivotData = array_filter([
             'custom_title' => $data['custom_title'] ?? null,
-            'is_read' => $data['is_read'],
-            'is_archived' => $data['is_archived']
-        ]), fn ($value) => !is_null($value));
+            'is_read' => $data['is_read'] ?? false,
+            'is_archived' => $data['is_archived'] ?? false,
+        ], fn($value) => !is_null($value));
 
-        return $page->fresh();
+        if (!empty($pivotData)) {
+            $user->pages()->updateExistingPivot($id, $pivotData);
+        }
+        return $user->pages()->findOrFail($id);
     }
 }
